@@ -131,7 +131,7 @@ while($(Invoke-SSHCommand -SSHSession $ssh -Command "ps aux | grep `"[g]zip`"").
 Add-content $logFile -value "$(Get-Date -format HH:mm:ss) - Backup - Started"
 Invoke-SSHCommand -SSHSession $ssh -Command "echo `"Started backup process - ``date '+%m-%d-%Y %H:%M:%S'```" | mail -s `"Backup DB $dbName - The backup process has started`" $email" -timeout 1200
 #mysqldump
-Invoke-SSHCommand -SSHSession $ssh -Command "nice -n 10 ionice -c2 -n 7 mysqldump -u $dbUser -p $dbPass $dbName --add-drop-table --single-transaction | cstream -t 5000000 | gzip  -4 > $remoteSavePath/$fileName" -timeout 1200
+Invoke-SSHCommand -SSHSession $ssh -Command "nice -n 10 ionice -c2 -n 7 mysqldump -u $dbUser -p $dbPass $dbName --add-drop-table --single-transaction | gzip  -4 > $remoteSavePath/$fileName" -timeout 1200
 
 #Transfert
 #Making sure that the backup file exists
