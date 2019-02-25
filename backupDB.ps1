@@ -19,7 +19,7 @@
 #                                                                                           #
 ###############################################################################################################################################################
 
-\Import-Module "C:\ajdb\alreadyRunning.psm1"
+\Import-Module ".\alreadyRunning.psm1"
 
 $ScriptName = $MyInvocation.MyCommand.Name
 Test-IfAlreadyRunning -ScriptName $ScriptName
